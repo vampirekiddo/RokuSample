@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "RowListItem" extends = "Group">
+  <interface>
+    <field id = "itemContent" type = "node" onChange = "showcontent"/>
+    <field id = "itemHasFocus" type = "Boolean" onChange = "handleFocus"/>
+    <field id = "rowHasFocus" type = "Boolean" onChange = "handleFocus"/>
+  </interface>
+  <script type = "text/brightscript" uri="pkg:/components/rowListItem.brs"/>
+  <children>
+    <Poster 
+        id = "itemPoster" width="320" height="180">
+      <Label 
+        id = "itemTitle" 
+        translation = "[ 0, 12 ]" 
+        horizAlign = "center" width="320"
+        maxLines = "1" />
+      <Label 
+        id = "itemDescription" 
+        translation = "[ 0, 120 ]" wrap="true" width="320"
+        maxLines = "2" />
+    </Poster>
+  </children>
+</component>

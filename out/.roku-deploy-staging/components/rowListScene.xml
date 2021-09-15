@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "rowListScene" extends = "Scene" initialFocus = "mainRowList">
+  <script type = "text/brightscript" uri="rowListScene.brs"/>
+  <children>
+    <RowList 
+        id = "mainRowList" 
+        translation = "[ 75, 60 ]" 
+        itemComponentName = "RowListItem" 
+        numRows = "3" 
+        itemSize = "[ 1600, 320 ]" 
+        rowItemSize = "[ [320, 180] ]" 
+        itemSpacing = "[ 0, 60 ]" 
+        showRowLabel = "[ false ]" rowItemSpacing="[[100,0]]"
+        drawFocusFeedback = "false" 
+        vertFocusAnimationStyle = "fixedFocusWrap" 
+        rowFocusAnimationStyle = "fixedFocusWrap" />
+  </children>
+</component>
