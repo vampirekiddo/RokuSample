@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 '********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
+>>>>>>> origin/main
 sub Main()
   showChannelSGScreen()
 end sub

@@ -1,19 +1,9 @@
 sub init()
-    dataAsString = ReadAsciiFile("pkg:/components/data.json")
-    dataAsJSON = ParseJson(dataAsString)
-    dataArray = JsonToContent(dataAsJSON)
+    m.JSONGetTask = createObject("roSGNode", "rowListContentLoader")
+    m.JSONGetTask.control = "RUN"
+    m.JSONGetTask.observeField("listContent", "onResponseDone")
 end sub
 
-function JsonToContent(items as object) as void
-    for each item in items
-        RowItem = m.top.createChild("ContentNode")
-        for each record in item.data
-            recordData = createObject("RoSGNode", "ContentNode")
-            recordData.title = record.title
-            recordData.description = record.longDescription
-            recordData.HDPosterUrl = record.thumbnail
-            RowItem.appendChild(recordData)
-        end for
-    end for
-end function
-
+sub onResponseDone()
+    m.top.appendChildren(m.JSONGetTask.listContent)
+end sub
