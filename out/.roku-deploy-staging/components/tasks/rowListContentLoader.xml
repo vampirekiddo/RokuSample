@@ -3,5 +3,6 @@
     <script type="text/brightscript" uri="rowListContentLoader.brs" />
     <interface>
         <field id="listContent" type="nodearray" />
+        <field id="request" type="assocarray" />
     </interface>
 </component>

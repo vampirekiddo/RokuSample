@@ -1,12 +1,15 @@
 sub init()
-    m.top.functionname = "request"
+    m.top.functionname = "handleCalls"
 end sub
 
-sub request()
+sub handleCalls()
+    fieldPort = createObject("roMessagePort")
+    m.top.observeField("request", fieldPort)
+    requestMsg = wait(1000, fieldPort)
+    ?requestMsg.GetField()
     url = "https://alghool.net/RokuDev/data.json"
     dataGetter = createObject("roUrlTransfer")
     dataGetter.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    dataGetter.AddHeader("X-Roku-Reserved-Dev-Id", "mega")
     dataGetter.InitClientCertificates()
     dataGetter.SetURL(url)
     port = createObject("roMessagePort")
