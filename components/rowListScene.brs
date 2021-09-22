@@ -1,10 +1,12 @@
 sub init()
+    m.global.addField("http", "node", FALSE)
+    m.global.addField("ratio", "float", FALSE)
+    m.global.http = createObject("roSGNode", "httpTask")
+    m.global.http.control = "RUN"
+    m.global.ratio = 1
     m.rowList = m.top.findNode("mainRowList")
-    test = createObject("roSGNode", "RowListContent")
     m.rowList.content = createObject("roSGNode", "RowListContent")
     m.rowList.setFocus(true)
-    m.global.addField("ratio", "float", FALSE)
-    m.global.ratio = 1
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
         m.global.ratio = 0.66

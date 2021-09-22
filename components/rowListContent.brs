@@ -1,10 +1,11 @@
 sub init()
-    m.JSONGetTask = createObject("roSGNode", "rowListContentLoader")
-    m.JSONGetTask.request = { payload: "Hi", requestType: "GET" }
-    m.JSONGetTask.control = "RUN"
-    m.JSONGetTask.observeField("listContent", "onResponseDone")
+    m.global.http.request = { payload: {
+            userId: 1,
+            title: "WOW, IT WORKED ^_^",
+    }, url: "https://jsonplaceholder.typicode.com/albums", requestType: "GET"}
+    m.global.http.observeFieldScoped("response", "useResponse")
 end sub
 
-sub onResponseDone()
-    m.top.appendChildren(m.JSONGetTask.listContent)
+sub useResponse()
+    ?m.global.http.response
 end sub
