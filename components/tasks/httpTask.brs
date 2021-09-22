@@ -13,7 +13,7 @@ function handleCalls() as Object
             if(msg.getField() = "request")
                 response = fire(msg.getData())
             end if
-        else if type(msg) = "roUrlEvent"
+        else if msgType = "roUrlEvent"
                 if msg.getInt() = 1
                     if msg.getResponseCode() > 0
                         response = handleResponse(msg.getString(),msg,true)
@@ -21,7 +21,6 @@ function handleCalls() as Object
                         response = handleResponse(msg.getFailureReason(),msg,false)
                     end if
                 end if
-                m.http.asyncCancel()
                 m.top.response = response
                 return response
         end if
@@ -29,13 +28,15 @@ function handleCalls() as Object
 end function
 
 function fire(request as Object) as Object
-    m.http = initiateHttpClient(request.url)
-    requestId = m.http.getIdentity().ToStr()
-    m.urlRequest[requestId] = m.http
+    httpRequest = initiateHttpClient(request.url)
+    requestId = httpRequest.getIdentity().ToStr()
+    m.urlRequest[requestId] = {
+        request:httpRequest
+    }
     if checkRequestType(request.requestType)
-        m.http.AsyncPostFromString(FormatJson(request.payload))
+        httpRequest.AsyncPostFromString(formatJson(request.payload))
     else
-        m.http.AsyncGetToString()
+        httpRequest.AsyncGetToString()
     end if
 end function
 
@@ -46,6 +47,7 @@ function handleResponse(responseString as String, message as Object, isOk as Boo
         body = "An Error has Occurred!!"
     end if
         requestId = message.GetSourceIdentity().ToStr()
+        m.urlRequest[requestId] = invalid
     return {
         requestId: requestId
         body:body
@@ -53,15 +55,15 @@ function handleResponse(responseString as String, message as Object, isOk as Boo
 end function
 
 function initiateHttpClient(url as String) as Object
-    http = createObject("roUrlTransfer")
-    http.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    http.InitClientCertificates()
-    http.SetPort(m.port)
-    http.SetUrl(url)
-    http.RetainBodyOnError(true)
-    http.addHeader("Content-Type", "application/json")
-    http.addHeader("Accept", "application/json")
-    return http
+    httpRequest = createObject("roUrlTransfer")
+    httpRequest.SetCertificatesFile("common:/certs/ca-bundle.crt")
+    httpRequest.InitClientCertificates()
+    httpRequest.SetPort(m.port)
+    httpRequest.SetUrl(url)
+    httpRequest.RetainBodyOnError(true)
+    httpRequest.addHeader("Content-Type", "application/json")
+    httpRequest.addHeader("Accept", "application/json")
+    return httpRequest
 end function
 
 function checkRequestType(requestType as String) as Boolean

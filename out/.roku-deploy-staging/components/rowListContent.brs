@@ -7,5 +7,6 @@ sub init()
 end sub
 
 sub useResponse()
+    ?"HELLO     "
     ?m.global.http.response
 end sub
