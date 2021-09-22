@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="rowListScene" extends="Scene" initialFocus="mainRowList">
   <script type="text/brightscript" uri="rowListScene.brs" />
+  <interface>
+    <field id="HeroDetails" type="assocarray" />
+  </interface>
   <children>
-    <RowList id="mainRowList" rowSpacings="[0.0]" focusXOffset="[-150.0]" translation="[ 0, 330 ]" rowLabelOffset="[[220.0,-6.0]]" itemComponentName="RowListItem" numRows="2" itemSize="[ 1608, 250 ]" rowItemSize="[ [368, 250] ]" rowHeights="[250.0]" vertFocusAnimationStyle="fixedFocusWrap" rowFocusAnimationStyle="fixedFocusWrap" showRowLabel="[true]" rowItemSpacing="[[0.0,0.0]]" drawFocusFeedback="false" rowLabelFont="font:LargeBoldSystemFont" />
+    <Group
+      translation = "[70,0]"
+      >
+      <Poster 
+      id="ProviderLogo"
+      translation = "[0,20]"
+      />
+      <Label
+      id="MainBoldLabel"
+      translation = "[0,80]"
+      width = "540"
+      wrap="true"
+      maxLines="2"
+      font = "font:LargeBoldSystemFont"
+      />
+      <Label
+      id="DateAndDurationLabel"
+      translation = "[0,160]"
+      font = "font:MediumBoldSystemFont"
+      />
+      <Label
+      id="DescriptionLabel"
+      translation = "[0,210]"
+      width = "540"
+      wrap="true"
+      maxLines="2"
+      font = "font:MediumSystemFont"
+      />
+      <Label
+      id="CategoryLabel"
+      translation = "[0,300]"
+      font="font:LargeBoldSystemFont"
+      />
+    </Group>
+    <RowList
+    id="mainRowList"
+    rowSpacings="[0.0]"
+    focusXOffset="[-150.0]"
+    translation="[ 0, 330 ]" rowLabelOffset="[[220.0,-6.0]]"
+    itemComponentName="RowListItem"
+    numRows="2"
+    itemSize="[ 1608, 250 ]"
+    rowItemSize="[ [368, 250] ]"
+    rowHeights="[250.0]"
+    vertFocusAnimationStyle="fixedFocusWrap"
+    rowFocusAnimationStyle="fixedFocusWrap"
+    showRowLabel="[true]"
+    rowItemSpacing="[[0.0,0.0]]"
+    drawFocusFeedback="false"
+    rowLabelFont="font:LargeBoldSystemFont"
+    />
   </children>
 </component>
