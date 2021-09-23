@@ -11,6 +11,8 @@ sub init()
     m.DateAndDurationLabel = m.top.findNode("DateAndDurationLabel")
     m.DescriptionLabel = m.top.findNode("DescriptionLabel")
     m.CategoryLabel = m.top.findNode("CategoryLabel")
+    m.textAnimation = m.top.findNode("heroDetailsAnimation")
+    ' m.overlayAnimation = m.top.findNode("mainOverlayAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
     m.rowList.setFocus(true)
     m.top.observeField("HeroDetails","handleHeroDetails")
@@ -34,4 +36,5 @@ sub handleHeroDetails()
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
     m.DescriptionLabel.text = m.top.HeroDetails.DescriptionLabel
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
+    m.textAnimation.control = "start"
 end sub
