@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="keyboardScene" extends="Scene" initialFocus="mainRowList">
+    <interface>
+        <field id="searchTerm" type="string" />
+    </interface>
+    <script type="text/brightscript" uri="keyboardScene.brs" />
+    <children>
+        <Group id="mainSearch">
+            <MiniKeyboard id="keyboard" translation="[150,150]" />
+            <Overhang height="150" translation="[500,150]" />
+        </Group>
+    </children>
+</component>
