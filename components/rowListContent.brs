@@ -7,15 +7,16 @@ sub init()
 end sub
 
 sub populateRowList()
-    items = m.global.http.response.body
-    for each item in items
+    for each item in m.global.http.response.body
         itemNode = m.top.createChild("ContentNode")
         itemNode.title = item.title
         for each data in item.data
             itemData = itemNode.createChild("ContentNode")
-            itemData.title = data.title
-            itemData.HDPosterUrl = data.thumbnail
-            itemData.description = data.longDescription
+            itemData.setFields({
+                title: data.title
+                HDPosterURL: data.thumbnail
+                description: data.longDescription
+            })
         end for
         m.top.appendChild(itemNode)
     end for

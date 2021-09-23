@@ -1,8 +1,6 @@
 sub init()
     m.global.addField("http", "node", FALSE)
     m.global.addField("ratio", "float", FALSE)
-    m.global.addField("mainScreen", "node", FALSE)
-    m.global.mainScreen = m.top
     m.global.http = createObject("roSGNode", "httpTask")
     m.global.http.control = "RUN"
     m.global.ratio = 1
@@ -11,11 +9,12 @@ sub init()
     m.DateAndDurationLabel = m.top.findNode("DateAndDurationLabel")
     m.DescriptionLabel = m.top.findNode("DescriptionLabel")
     m.CategoryLabel = m.top.findNode("CategoryLabel")
-    m.textAnimation = m.top.findNode("heroDetailsAnimation")
-    ' m.overlayAnimation = m.top.findNode("mainOverlayAnimation")
+    m.fadeInAnimation = m.top.findNode("fadeInAnimation")
+    m.overlayAnimation = m.top.findNode("mainOverlayAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
     m.rowList.setFocus(true)
-    m.top.observeField("HeroDetails","handleHeroDetails")
+    m.rowList.findNode("RowListItem")
+    m.top.observeField("HeroDetails", "handleHeroDetails")
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
         m.global.ratio = 0.66
@@ -36,5 +35,5 @@ sub handleHeroDetails()
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
     m.DescriptionLabel.text = m.top.HeroDetails.DescriptionLabel
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
-    m.textAnimation.control = "start"
+    m.fadeInAnimation.control = "start"
 end sub

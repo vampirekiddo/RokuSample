@@ -3,7 +3,7 @@ sub init()
     m.itemTitle = m.top.findNode("itemTitle")
     m.itemMask = m.top.findNode("itemMask")
     m.itemDescription = m.top.findNode("itemDescription")
-    m.parentComponent = m.top.findNode("rowListScene")
+    m.parentComponent = m.top.getScene()
 end sub
 
 sub showContent()
@@ -28,13 +28,13 @@ sub handleFocus()
     scale = 1 + (m.top.focusPercent * 0.15)
     m.itemPoster.scale = [scale, scale]
     if m.top.focusPercent = 1
-        m.global.mainScreen.backgroundURI = m.itemPoster.uri
-         m.global.mainScreen.HeroDetails = {
-            MainBoldLabel:m.itemTitle.text
-            DateAndDurationLabel:"21 Sep 21 | 3m"
-            DescriptionLabel:m.itemDescription.text
-            CategoryLabel:"World"
-         }
+        m.parentComponent.backgroundURI = m.itemPoster.uri
+        m.parentComponent.HeroDetails = {
+            MainBoldLabel: m.itemTitle.text
+            DateAndDurationLabel: "21 Sep 21 | 3m"
+            DescriptionLabel: m.itemDescription.text
+            CategoryLabel: "World"
+        }
     end if
 end sub
 
