@@ -39,7 +39,7 @@ sub handleHeading()
     m.heading.text = "These are the top videos that match " + Chr(34) + m.keyboard.textEditBox.text + Chr(34)
 end sub
 
-function onKeyEvent(key as string, press as boolean) as boolean
+function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     if press
         if key = "right" and not m.itemsList.hasFocus()
