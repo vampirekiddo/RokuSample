@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="SearchListItem" extends="Group">
+    <script type="text/brightscript" uri="SearchListItem.brs" />
+    <interface>
+        <field id="itemContent" type="node" onChange="showContent" />
+    </interface>
+    <children>
+        <Poster id="imagePoster" loadWidth="50" loadHeight="50" />
+    </children>
+</component>
