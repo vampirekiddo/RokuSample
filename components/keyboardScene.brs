@@ -41,7 +41,6 @@ end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
     handled = false
-
     if press
         if key = "right" and not m.itemsList.hasFocus()
             m.itemsList.setFocus(true)
@@ -51,6 +50,5 @@ function onKeyEvent(key as string, press as boolean) as boolean
             handled = true
         end if
     end if
-
     return handled
 end function
