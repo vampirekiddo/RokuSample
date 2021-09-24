@@ -7,7 +7,7 @@
     <children>
         <Group id="mainSearch">
             <MiniKeyboard id="keyboard" translation="[150,150]" />
-            <Label id="heading" translation="[ 600, 150 ]" />
+            <Label id="heading" translation="[ 600, 145 ]" />
             <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 600, 180 ]" numRows="3" numColumns="3" />
         </Group>
     </children>
