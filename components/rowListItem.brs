@@ -34,6 +34,7 @@ sub handleFocus()
             DateAndDurationLabel: "21 Sep 21 | 3m"
             DescriptionLabel: m.itemDescription.text
             CategoryLabel: "World"
+            focus: m.itemPoster.uri
         }
     end if
 end sub

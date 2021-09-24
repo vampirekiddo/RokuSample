@@ -1,13 +1,15 @@
 sub init()
-    m.global.http.request = { payload: {
+    m.http = createObject("roSGNode", "httpTask")
+    m.http.request = { payload: {
             userId: 1,
             title: "WOW, IT WORKED ^_^",
-    }, url: "https://alghool.net/RokuDev/data.json", requestType: "GET"}
-    m.global.http.observeFieldScoped("response", "populateRowList")
+    }, url: "https://alghool.net/RokuDev/data.json", requestType: "GET" }
+    m.http.control = "RUN"
+    m.http.observeFieldScoped("response", "populateRowList")
 end sub
 
 sub populateRowList()
-    for each item in m.global.http.response.body
+    for each item in m.http.response.body
         itemNode = m.top.createChild("ContentNode")
         itemNode.title = item.title
         for each data in item.data

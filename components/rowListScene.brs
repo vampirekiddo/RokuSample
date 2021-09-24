@@ -1,20 +1,20 @@
 sub init()
-    m.global.addField("http", "node", FALSE)
     m.global.addField("ratio", "float", FALSE)
-    m.global.http = createObject("roSGNode", "httpTask")
-    m.global.http.control = "RUN"
+    m.flag = true
     m.global.ratio = 1
     m.rowList = m.top.findNode("mainRowList")
+    m.currFocus = invalid
     m.MainBoldLabel = m.top.findNode("MainBoldLabel")
     m.DateAndDurationLabel = m.top.findNode("DateAndDurationLabel")
     m.DescriptionLabel = m.top.findNode("DescriptionLabel")
     m.CategoryLabel = m.top.findNode("CategoryLabel")
     m.fadeInAnimation = m.top.findNode("fadeInAnimation")
-    m.overlayAnimation = m.top.findNode("mainOverlayAnimation")
+    m.fadeOutAnimation = m.top.findNode("fadeOutAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
     m.rowList.setFocus(true)
     m.rowList.findNode("RowListItem")
     m.top.observeField("HeroDetails", "handleHeroDetails")
+    m.fadeOutAnimation.observeField("state", "handleAnimationDone")
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
         m.global.ratio = 0.66
@@ -31,9 +31,28 @@ sub init()
 end sub
 
 sub handleHeroDetails()
+    if m.flag
+        m.flag = false
+        handleUpdate()
+    else
+        handleItemFocusChange()
+    end if
+end sub
+
+sub handleAnimationDone()
+    if m.fadeOutAnimation.state = "stopped"
+        handleUpdate()
+        m.fadeInAnimation.control = "start"
+    end if
+end sub
+
+sub handleItemFocusChange()
+    m.fadeOutAnimation.control = "start"
+end sub
+
+sub handleUpdate()
     m.MainBoldLabel.text = m.top.HeroDetails.MainBoldLabel
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
     m.DescriptionLabel.text = m.top.HeroDetails.DescriptionLabel
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
-    m.fadeInAnimation.control = "start"
 end sub
