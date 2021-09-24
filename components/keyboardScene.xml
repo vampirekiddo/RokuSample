@@ -7,7 +7,8 @@
     <children>
         <Group id="mainSearch">
             <MiniKeyboard id="keyboard" translation="[150,150]" />
-            <RowList id="searchList" rowSpacings="[0.0]" focusXOffset="[-150.0]" translation="[ 600, 150 ]" itemComponentName="SearchListItem" numRows="2" itemSize="[ 500, 900 ]" rowItemSize="[ [240, 270] ]" vertFocusAnimationStyle="fixedFocusWrap" rowFocusAnimationStyle="fixedFocusWrap" rowItemSpacing="[[10.0,10.0]]" drawFocusFeedback="true" />
+            <Label id="heading" translation="[ 600, 150 ]" />
+            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 600, 180 ]" numRows="3" numColumns="3" />
         </Group>
     </children>
 </component>

@@ -5,6 +5,6 @@
         <field id="itemContent" type="node" onChange="showContent" />
     </interface>
     <children>
-        <Poster id="imagePoster" loadWidth="50" loadHeight="50" />
+        <Poster id="imagePoster" width="50" height="50" />
     </children>
 </component>
