@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="itemDetailsScreen" extends="Group">
+    <script type="text/brightscript" uri="itemDetailsScreen.brs" />
+    <interface>
+        <field id="content" type="node" />
+    </interface>
+    <children>
+        <LayoutGroup translation="[640,400]" id="mainContent" layoutDirection="vert" itemSpacings="20" vertAlignment="center" horizAlignment="center">
+            <Label id="itemTitle" />
+            <Label id="itemDescription" />
+            <Label id="itemTags" />
+            <Button id="watchButton" text="WATCH" width="120" height="80" />
+        </LayoutGroup>
+    </children>
+</component>

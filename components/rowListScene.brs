@@ -14,6 +14,7 @@ sub init()
     m.rowList.setFocus(true)
     m.rowList.findNode("RowListItem")
     m.top.observeField("HeroDetails", "handleHeroDetails")
+    m.rowList.observeField("rowItemSelected", "handleItemSelected")
     m.fadeOutAnimation.observeField("state", "handleAnimationDone")
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
@@ -55,4 +56,20 @@ sub handleUpdate()
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
     m.DescriptionLabel.text = m.top.HeroDetails.DescriptionLabel
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
+end sub
+
+sub handleItemSelected()
+    itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
+    itemDetailsContentNode = createObject("roSGNode", "ContentNode")
+    itemDetailsContentNode = itemDetailsNode
+    itemDetailsScreen = createObject("roSGNode", "itemDetailsScreen")
+    itemDetailsScreen.content = itemDetailsContentNode
+    m.top.appendChild(itemDetailsScreen)
+    m.rowList.visible = false
+    m.MainBoldLabel.visible = false
+    m.CategoryLabel.visible = false
+    m.DescriptionLabel.visible = false
+    m.DateAndDurationLabel.visible = false
+    itemDetailsScreen.visible = true
+    itemDetailsScreen.setFocus(true)
 end sub
