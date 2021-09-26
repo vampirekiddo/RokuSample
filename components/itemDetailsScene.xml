@@ -9,7 +9,7 @@
             <Label id="itemTitle" />
             <Label id="itemDescription" />
             <Label id="itemTags" />
-            <Button id="watchButton" text="WATCH" width="120" height="80" />
+            <Button id="watchButton" text="WATCH" height="80" />
         </LayoutGroup>
     </children>
 </component>

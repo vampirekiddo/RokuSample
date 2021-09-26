@@ -60,10 +60,8 @@ end sub
 
 sub handleItemSelected()
     itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
-    itemDetailsContentNode = createObject("roSGNode", "ContentNode")
-    itemDetailsContentNode = itemDetailsNode
     m.itemDetailsScreen = createObject("roSGNode", "itemDetailsScreen")
-    m.itemDetailsScreen.content = itemDetailsContentNode
+    m.itemDetailsScreen.content = itemDetailsNode
     m.top.appendChild(m.itemDetailsScreen)
     m.rowList.visible = false
     m.MainBoldLabel.visible = false

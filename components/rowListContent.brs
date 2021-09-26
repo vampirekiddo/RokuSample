@@ -13,11 +13,12 @@ sub populateRowList()
         itemNode = m.top.createChild("ContentNode")
         itemNode.title = item.title
         for each data in item.data
-            itemData = itemNode.createChild("ContentNode")
+            itemData = itemNode.createChild("rowItemDataContent")
             itemData.setFields({
                 title: data.title
                 HDPosterURL: data.thumbnail
                 description: data.longDescription
+                tags: data.tags
             })
         end for
         m.top.appendChild(itemNode)
