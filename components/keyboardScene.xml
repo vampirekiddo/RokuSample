@@ -6,9 +6,10 @@
     <script type="text/brightscript" uri="keyboardScene.brs" />
     <children>
         <Group id="mainSearch">
-            <MiniKeyboard id="keyboard" translation="[150,150]" />
-            <Label id="heading" translation="[ 600, 145 ]" />
-            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 600, 180 ]" numRows="3" numColumns="3" />
+            <!-- <MiniKeyboard id="keyboard" translation="[150,150]" /> -->
+            <keyboardComponent />
+            <Label id="heading" translation="[ 800, 145 ]" />
+            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 800, 180 ]" numRows="3" numColumns="3" />
         </Group>
     </children>
 </component>

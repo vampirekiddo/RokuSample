@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="keyboardComponent" extends="Group">
+    <interface>
+        <field id="buttonClicked" type="string" />
+    </interface>
+    <script type="text/brightscript" uri="pkg:/components/keyboardcomponent/keyboardComponent.brs" />
+    <children>
+        <TextEditBox id="textbox" translation="[320,180]" />
+        <Group id="keyboardController" translation="[150,500]">
+            <ButtonGroup translation="[120,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col1" />
+            <ButtonGroup translation="[170,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col2" />
+            <ButtonGroup translation="[220,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col3" />
+            <ButtonGroup translation="[270,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col4" />
+            <ButtonGroup translation="[320,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col5" />
+            <ButtonGroup translation="[370,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col6" />
+            <ButtonGroup translation="[420,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col7" />
+            <ButtonGroup translation="[470,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col8" />
+            <ButtonGroup translation="[530,0]" iconUri="" buttonHeight="60" itemSpacings="[10.0]" focusedIconUri="" minWidth="60" maxWidth="80" vertAlignment="bottom" layoutDirection="vert" id="Col9" />
+        </Group>
+    </children>
+</component>
