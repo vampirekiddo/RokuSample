@@ -39,8 +39,8 @@ sub handleHeroDetails()
     end if
 end sub
 
-sub handleAnimationDone()
-    if m.fadeOutAnimation.state = "stopped"
+sub handleAnimationDone(event)
+    if event.getData() = "stopped"
         handleUpdate()
         m.fadeInAnimation.control = "start"
     end if
