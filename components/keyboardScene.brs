@@ -17,6 +17,7 @@ end sub
 sub useResponse()
     itemsThatContainString = createObject("roSGNode", "ContentNode")
     items = []
+    m.itemsList.numColumns = 3
     for each item in m.http.response.body
         if item.login.inStr(m.keyboard.textEditBox.text) <> -1
             Content = itemsThatContainString.createChild("ContentNode")
@@ -24,6 +25,11 @@ sub useResponse()
             items.push(item)
         end if
     end for
+    if items.count() = 2
+        m.itemsList.numColumns = 2
+    else if items.count() = 1
+        m.itemsList.numColumns = 1
+    end if
     ' handle empty text box
     if m.keyboard.textEditBox.text = ""
         m.itemsList.content = invalid
