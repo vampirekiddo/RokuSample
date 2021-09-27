@@ -5,6 +5,7 @@
         <field id="HDPosterURL" type="string" />
         <field id="description" type="string" />
         <field id="tags" type="array" />
+        <field id="time" type="integer" />
     </interface>
     <children></children>
 </component>

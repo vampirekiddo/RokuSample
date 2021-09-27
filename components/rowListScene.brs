@@ -11,6 +11,7 @@ sub init()
     m.fadeInAnimation = m.top.findNode("fadeInAnimation")
     m.fadeOutAnimation = m.top.findNode("fadeOutAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
+    m.createScreen = createObject("roSGNOde", "createScreen")
     m.rowList.setFocus(true)
     m.rowList.findNode("RowListItem")
     m.top.observeField("HeroDetails", "handleHeroDetails")
@@ -60,33 +61,7 @@ end sub
 
 sub handleItemSelected()
     itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
-    m.itemDetailsScreen = createObject("roSGNode", "itemDetailsScreen")
-    m.itemDetailsScreen.content = itemDetailsNode
-    m.top.appendChild(m.itemDetailsScreen)
-    m.rowList.visible = false
-    m.MainBoldLabel.visible = false
-    m.CategoryLabel.visible = false
-    m.DescriptionLabel.visible = false
-    m.DateAndDurationLabel.visible = false
-    m.itemDetailsScreen.visible = true
-    m.itemDetailsScreen.setFocus(true)
+    m.createScreen.screenTitle = "itemDetailsScene"
+    m.createScreen.content = itemDetailsNode
+    m.createScreen.control = "RUN"
 end sub
-
-function onKeyEvent(key as String, press as Boolean) as Boolean
-    handled = false
-    if press
-        if key = "back" and m.itemDetailsScreen.visible = true
-            m.MainBoldLabel.visible = true
-            m.CategoryLabel.visible = true
-            m.DescriptionLabel.visible = true
-            m.DateAndDurationLabel.visible = true
-            m.rowList.visible = true
-            m.rowList.setFocus(true)
-            m.itemDetailsScreen.visible = false
-            handled = true
-        else
-            handled = false
-        end if
-    end if
-    return handled
-end function

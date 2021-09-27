@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component name="itemDetailsScreen" extends="Group">
+<component name="itemDetailsScreen" extends="Scene" initialFocus="ButtonGroup">
     <script type="text/brightscript" uri="itemDetailsScreen.brs" />
     <interface>
         <field id="content" type="node" />
@@ -9,7 +9,11 @@
             <Label id="itemTitle" />
             <Label id="itemDescription" />
             <Label id="itemTags" />
-            <Button id="watchButton" text="WATCH" height="80" />
+            <Label id="itemTime" />
+            <ButtonGroup id="ButtonGroup" layoutDirection="horiz" itemSpacings="16">
+                <Button id="WATCH" text="WATCH" iconUri="" focusedIconUri="" minWidth="120" maxWidth="260" />
+                <Button id="plus" iconUri="pkg:/components/icons/plusicon.png" focusedIconUri="pkg:/components/icons/plus.png" minWidth="50" maxWidth="80" />
+            </ButtonGroup>
         </LayoutGroup>
     </children>
 </component>

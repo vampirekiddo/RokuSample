@@ -19,6 +19,7 @@ sub populateRowList()
                 HDPosterURL: data.thumbnail
                 description: data.longDescription
                 tags: data.tags
+                time: data.time
             })
         end for
         m.top.appendChild(itemNode)
