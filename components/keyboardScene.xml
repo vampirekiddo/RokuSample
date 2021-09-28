@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="keyboardScene" extends="Scene" initialFocus="mainRowList">
-    <interface>
-        <field id="searchTerm" type="string" />
-    </interface>
     <script type="text/brightscript" uri="keyboardScene.brs" />
     <children>
         <Group id="mainSearch">
-            <!-- <MiniKeyboard id="keyboard" translation="[150,150]" /> -->
-            <keyboardComponent />
-            <Label id="heading" translation="[ 800, 145 ]" />
-            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 800, 180 ]" numRows="3" numColumns="3" />
+            <keyboardComponent id="myKeyboard" />
+            <Label id="heading" translation="[ 700, 145 ]" />
+            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 700, 180 ]" numRows="3" numColumns="3" />
         </Group>
     </children>
 </component>
