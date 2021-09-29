@@ -1,5 +1,8 @@
 sub init()
     m.keyboardController = m.top.findNode("keyboardController")
+    m.keys = ["A", "J", "S", "1", "B", "K", "T", "2", "C", "L", "U", "3", "D", "M", "V", "4", "E", "N", "W", "5", "F", "O", "X", "6", "G", "P", "Y", "7", "H", "Q", "Z", "8", "I", "R", "0", "9"]
+    m.symbolsKeys = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "-", "/", "\", "|", "[", "]", "{", "}", ":", ";", "", "'", ",", ".", "<", ">", "?", "=", "`", "~", "X", "O", "..."]
+    m.symbolsFlag = false
     initButtons()
     m.focusIdx = 0
     m.Col1.getChild(0).setFocus(true)
@@ -20,24 +23,53 @@ sub initButtons()
     m.SPACEBAR = m.keyboardController.findNode("SPACEBAR")
     m.DELETE = m.keyboardController.findNode("DELETE")
     m.textBox = m.top.findNode("textBox")
-    m.Col1.buttons = [" A ", "J", "S", "1"]
-    m.Col2.buttons = ["B", "K", "T", "2"]
-    m.Col3.buttons = ["C", "L", "U", "3"]
-    m.Col4.buttons = ["D", "M", "V", "4"]
-    m.Col5.buttons = ["E", "N", "W", "5"]
-    m.Col6.buttons = ["F", "O", "X", "6"]
-    m.Col7.buttons = ["G", "P", "Y", "7"]
-    m.Col8.buttons = ["H", "Q", "Z", "8"]
-    m.Col9.buttons = ["I", "R", "0", "9"]
-    for i = 0 to 3
-        for each child in m.keyboardController.getChildren(9, 0)
-            child.getChild(i).removeChild(1)
-            child.getChild(i).getChild(2).width = 68
-            child.getChild(i).getChild(2).height = 68
-            child.getChild(i).getChild(2).horizAlign = "center"
-            ?child.getChild(i).getChild(2)
+    it = -1
+    for each child in m.keyboardController.getChildren(9, 0)
+        it++
+        it2 = it + 3
+        for i = it to it2
+            childButton = createObject("roSGNode", "Button")
+            childButton.getChild(1).uri = ""
+            childButton.getChild(2).text = m.keys[i]
+            childButton.getChild(2).width = 72
+            childButton.getChild(2).height = 72
+            childButton.getChild(2).font = "font:SmallestBoldSystemFont"
+            childButton.getChild(2).horizAlign = "center"
+            childButton.iconUri = ""
+            childButton.focusedIconUri = ""
+            child.appendChild(childButton)
         end for
+        it = it2
     end for
+end sub
+
+sub handleSymbols()
+    it = -1
+    if m.symbolsFlag
+        for each child in m.keyboardController.getChildren(9, 0)
+            it++
+            it2 = it + 3
+            btnIdx = 0
+            for i = it to it2
+                child.getChild(btnIdx).getChild(2).text = m.keys[i]
+                btnIdx++
+            end for
+            it = it2
+        end for
+        m.symbolsFlag = false
+    else
+        for each child in m.keyboardController.getChildren(9, 0)
+            it++
+            it2 = it + 3
+            btnIdx = 0
+            for i = it to it2
+                child.getChild(btnIdx).getChild(2).text = m.symbolsKeys[i]
+                btnIdx++
+            end for
+            it = it2
+        end for
+        m.symbolsFlag = true
+    end if
 end sub
 
 sub initObservers()
@@ -52,19 +84,22 @@ sub initObservers()
     m.Col9.observeField("buttonSelected", "handleItemSelect")
     m.DELETE.observeField("buttonSelected", "handleExternalButtonSelect")
     m.SPACEBAR.observeField("buttonSelected", "handleExternalButtonSelect")
+    m.SYMBOLS.observeField("buttonSelected", "handleExternalButtonSelect")
     m.top.textBox = m.textBox
 end sub
 
 sub handleExternalButtonSelect(event)
     if event.getRoSGNode().text = "SPACE"
         m.textBox.text += " "
-    else
+    else if event.getRoSGNode().id = "DELETE"
         m.textBox.text = m.textBox.text.Left(m.textBox.text.Len() - 1)
+    else
+        handleSymbols()
     end if
 end sub
 
 sub handleItemSelect(event)
-    text = event.getRoSGNode().getChild(event.getData()).text
+    text = event.getRoSGNode().focusedChild.getChild(2).text
     m.textBox.text += text
 end sub
 
