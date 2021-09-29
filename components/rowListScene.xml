@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component name="rowListScene" extends="Scene" initialFocus="mainRowList">
-  <script type="text/brightscript" uri="rowListScene.brs" />
+<component name="RowListScene" extends="Scene" initialFocus="mainRowList">
+  <script type="text/brightscript" uri="RowListScene.brs" />
   <interface>
     <field id="HeroDetails" type="assocarray" />
   </interface>

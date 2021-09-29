@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component name="itemDetailsScreen" extends="Scene" initialFocus="ButtonGroup">
-    <script type="text/brightscript" uri="itemDetailsScreen.brs" />
+<component name="ItemDetailsScreen" extends="Scene" initialFocus="ButtonGroup">
+    <script type="text/brightscript" uri="ItemDetailsScreen.brs" />
     <interface>
         <field id="content" type="node" />
     </interface>

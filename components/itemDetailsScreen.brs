@@ -6,19 +6,19 @@ sub init()
     m.itemTime = m.top.findNode("itemTime")
     m.ButtonGroup = m.top.findNode("ButtonGroup")
     m.top.ObserveField("content", "handleItemDetails")
-end sub
-
-sub handleItemDetails()
     m.ButtonGroup.focusedTextFont = "font:LargeBoldSystemFont"
     m.ButtonGroup.textFont = "font:LargeBoldSystemFont"
     m.ButtonGroup.vertAlignment = "center"
     m.ButtonGroup.horizAlignment = "center"
+end sub
+
+sub handleItemDetails()
     m.itemTitle.text = m.top.content.TITLE
     m.itemDescription.text = m.top.content.DESCRIPTION
-    m.itemTime.text = "Duration : " + GetTime(m.top.content.time) + " Hour(s)"
+    m.itemTime.text = "Duration : " + FormatDuration(m.top.content.time) + " Hour(s)"
     if m.top.content.tags <> invalid
         tagsCount = m.top.content.tags.Count()
-        for i = 0 to tagsCount - 1
+        for each i in count
             if i = tagsCount - 1
                 m.itemTags.text += m.top.content.tags[i]
             else
@@ -30,9 +30,9 @@ sub handleItemDetails()
     end if
 end sub
 
-function GetTime(length as Integer) as String
-    minutes = (length \ 60).ToStr()
-    seconds = length MOD 60
+function FormatDuration(duration as Integer) as String
+    minutes = (duration \ 60).ToStr()
+    seconds = duration MOD 60
     if seconds < 10
         seconds = "0" + seconds.ToStr()
     else
