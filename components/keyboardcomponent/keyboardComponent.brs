@@ -20,7 +20,7 @@ sub initButtons()
     m.SPACEBAR = m.keyboardController.findNode("SPACEBAR")
     m.DELETE = m.keyboardController.findNode("DELETE")
     m.textBox = m.top.findNode("textBox")
-    m.Col1.buttons = ["A", "J", "S", "1"]
+    m.Col1.buttons = [" A ", "J", "S", "1"]
     m.Col2.buttons = ["B", "K", "T", "2"]
     m.Col3.buttons = ["C", "L", "U", "3"]
     m.Col4.buttons = ["D", "M", "V", "4"]
@@ -31,7 +31,11 @@ sub initButtons()
     m.Col9.buttons = ["I", "R", "0", "9"]
     for i = 0 to 3
         for each child in m.keyboardController.getChildren(9, 0)
-            child.getChild(i).getChild(1).uri = ""
+            child.getChild(i).removeChild(1)
+            child.getChild(i).getChild(2).width = 68
+            child.getChild(i).getChild(2).height = 68
+            child.getChild(i).getChild(2).horizAlign = "center"
+            ?child.getChild(i).getChild(2)
         end for
     end for
 end sub
