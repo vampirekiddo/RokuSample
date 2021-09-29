@@ -29,6 +29,11 @@ sub initButtons()
     m.Col7.buttons = ["G", "P", "Y", "7"]
     m.Col8.buttons = ["H", "Q", "Z", "8"]
     m.Col9.buttons = ["I", "R", "0", "9"]
+    for i = 0 to 3
+        for each child in m.keyboardController.getChildren(9, 0)
+            child.getChild(i).getChild(1).uri = ""
+        end for
+    end for
 end sub
 
 sub initObservers()
