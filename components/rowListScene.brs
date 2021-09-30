@@ -39,14 +39,13 @@ sub animateScroll(direction as String)
     if direction = "down" and m.rowFocused < 5
         m.rowFocused++
         for i = 0 to 5
-            m.scrollAnimation.getChild(i).keyValue = [[0, m.parent.getChild(i).translation[1]], [0, m.parent.getChild(i).translation[1] - 300]]
+            m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
         end for
         m.parent.getChild(m.rowFocused).setFocus(true)
         m.scrollAnimation.control = "start"
     else if direction = "up" and m.rowFocused > 0
-        for i = 0 to 5
-            m.scrollAnimation.getChild(i).keyValue = [[0, m.parent.getChild(i).translation[1]], [0, m.parent.getChild(i).translation[1] + 300]]
-        end for
+        m.rowFocused--
+        m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] + 300]]
         m.parent.getChild(m.rowFocused).setFocus(true)
         m.scrollAnimation.control = "start"
     end if

@@ -10,12 +10,7 @@
       <RowList id="rowList5" rowSpacings="[0.0]" focusXOffset="[-150.0]" translation="[ 0, 1300 ]" rowLabelOffset="[[220.0,-6.0]]" itemComponentName="RowListItem" numRows="2" itemSize="[ 1608, 250 ]" rowItemSize="[ [368, 250] ]" rowHeights="[250.0]" vertFocusAnimationStyle="floatingFocus" rowFocusAnimationStyle="floatingFocus" showRowLabel="[true]" rowItemSpacing="[[0.0,0.0]]" drawFocusFeedback="false" rowLabelFont="font:LargeBoldSystemFont" />
       <RowList id="rowList6" rowSpacings="[0.0]" focusXOffset="[-150.0]" translation="[ 0, 1600 ]" rowLabelOffset="[[220.0,-6.0]]" itemComponentName="RowListItem" numRows="2" itemSize="[ 1608, 250 ]" rowItemSize="[ [368, 250] ]" rowHeights="[250.0]" vertFocusAnimationStyle="floatingFocus" rowFocusAnimationStyle="floatingFocus" showRowLabel="[true]" rowItemSpacing="[[0.0,0.0]]" drawFocusFeedback="false" rowLabelFont="font:LargeBoldSystemFont" />
       <Animation id="scroll" duration="1" repeat="false" easeFunction="linear">
-        <Vector2DFieldInterpolator id="myInterp1" key="[0.0, 1.0]" fieldToInterp="rowList1.translation" />
-        <Vector2DFieldInterpolator id="myInterp2" key="[0.0, 1.0]" fieldToInterp="rowList2.translation" />
-        <Vector2DFieldInterpolator id="myInterp3" key="[0.0, 1.0]" fieldToInterp="rowList3.translation" />
-        <Vector2DFieldInterpolator id="myInterp4" key="[0.0, 1.0]" fieldToInterp="rowList4.translation" />
-        <Vector2DFieldInterpolator id="myInterp5" key="[0.0, 1.0]" fieldToInterp="rowList5.translation" />
-        <Vector2DFieldInterpolator id="myInterp6" key="[0.0, 1.0]" fieldToInterp="rowList6.translation" />
+        <Vector2DFieldInterpolator id="myInterp1" key="[0.0, 1.0]" fieldToInterp="rowListParty.translation" />
       </Animation>
     </Group>
   </children>
