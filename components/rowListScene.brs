@@ -4,22 +4,14 @@ sub init()
     m.global.http = createObject("roSGNode", "httpTask")
     m.global.http.control = "RUN"
     m.global.ratio = 1
-    m.rowList1 = m.top.findNode("rowList1")
-    m.rowList2 = m.top.findNode("rowList2")
-    m.rowList3 = m.top.findNode("rowList3")
-    m.rowList4 = m.top.findNode("rowList4")
-    m.rowList5 = m.top.findNode("rowList5")
-    m.rowList6 = m.top.findNode("rowList6")
+    m.rows = m.top.getChild(1).getChildren(6, 0)
     m.parent = m.top.findNode("rowListParty")
     m.scrollAnimation = m.top.findNode("scroll")
-    m.rowList1.content = createObject("roSGNode", "RowListContent")
-    m.rowList2.content = createObject("roSGNode", "RowListContent")
-    m.rowList3.content = createObject("roSGNode", "RowListContent")
-    m.rowList4.content = createObject("roSGNode", "RowListContent")
-    m.rowList5.content = createObject("roSGNode", "RowListContent")
-    m.rowList6.content = createObject("roSGNode", "RowListContent")
+    for each row in m.rows
+        row.content = createObject("roSGNode", "RowListContent")
+    end for
     m.rowFocused = 0
-    m.rowList1.setFocus(true)
+    m.rows[0].setFocus(true)
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
         m.global.ratio = 0.66
@@ -36,18 +28,23 @@ sub init()
 end sub
 
 sub animateScroll(direction as String)
-    if direction = "down" and m.rowFocused < 5
+    if direction = "down" and m.rowFocused < 4 and m.scrollAnimation.state = "stopped"
         m.rowFocused++
-        for i = 0 to 5
-            m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
-        end for
+        m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
         m.parent.getChild(m.rowFocused).setFocus(true)
         m.scrollAnimation.control = "start"
-    else if direction = "up" and m.rowFocused > 0
+    else if direction = "up" and m.rowFocused = 1 and m.scrollAnimation.state = "stopped"
+        m.parent.getChild(m.rowFocused - 1).setFocus(true)
+    else if direction = "up" and m.rowFocused > 1 and m.scrollAnimation.state = "stopped"
         m.rowFocused--
         m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] + 300]]
         m.parent.getChild(m.rowFocused).setFocus(true)
         m.scrollAnimation.control = "start"
+    else if direction = "down" and m.rowFocused = 4 and m.scrollAnimation.state = "stopped"
+        m.parent.getChild(m.rowFocused + 1).setFocus(true)
+        m.rowFocused = 5
+    else if direction = "up" and m.rowFocused = 5 and m.scrollAnimation.state = "stopped"
+        m.parent.getChild(m.rowFocused - 1).setFocus(true)
     end if
 end sub
 
