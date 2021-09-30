@@ -37,6 +37,8 @@ sub initButtons()
             childButton.getChild(2).horizAlign = "center"
             childButton.iconUri = ""
             childButton.focusedIconUri = ""
+            childButton.focusedTextFont = "font:SmallestBoldSystemFont"
+            childButton.textFont = "font:SmallestBoldSystemFont"
             child.appendChild(childButton)
         end for
         it = it2
