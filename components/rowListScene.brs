@@ -3,15 +3,14 @@ sub init()
     m.flag = true
     m.global.ratio = 1
     m.rowList = m.top.findNode("mainRowList")
-    m.currFocus = invalid
     m.MainBoldLabel = m.top.findNode("MainBoldLabel")
     m.DateAndDurationLabel = m.top.findNode("DateAndDurationLabel")
     m.DescriptionLabel = m.top.findNode("DescriptionLabel")
     m.CategoryLabel = m.top.findNode("CategoryLabel")
     m.fadeInAnimation = m.top.findNode("fadeInAnimation")
+    m.heroDetailsId = m.top.findNode("heroDetailsId")
     m.fadeOutAnimation = m.top.findNode("fadeOutAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
-    m.createScreen = createObject("roSGNOde", "createScreen")
     m.rowList.setFocus(true)
     m.rowList.findNode("RowListItem")
     m.top.observeField("HeroDetails", "handleHeroDetails")
@@ -60,8 +59,37 @@ sub handleUpdate()
 end sub
 
 sub handleItemSelected()
+    m.createScreen = createObject("roSGNOde", "ItemDetailsScreen")
     itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
-    m.createScreen.screenTitle = "itemDetailsScene"
     m.createScreen.content = itemDetailsNode
-    m.createScreen.control = "RUN"
+    m.top.appendChild(m.createScreen)
+    m.createScreen.visible = false
+    toggleDetails()
 end sub
+
+sub toggleDetails()
+    m.rowList.visible = not m.rowList.visible
+    m.heroDetailsId.visible = not m.heroDetailsId.visible
+    m.createScreen.visible = not m.createScreen.visible
+    if m.createScreen.visible
+        m.createScreen.setFocus(true)
+    else
+        m.rowList.setFocus(true)
+    end if
+end sub
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    if press then
+        if key = "back" and m.createScreen.visible
+            toggleDetails()
+            return true
+        else if key = "right" and m.createScreen.visible
+            m.createScreen.getChild(0).getChild(4).getChild(1).setFocus(true)
+            return true
+        else if key = "left" and m.createScreen.visible
+            m.createScreen.getChild(0).getChild(4).getChild(0).setFocus(true)
+            return true
+        end if
+    end if
+    return false
+end function

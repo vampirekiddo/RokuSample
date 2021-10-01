@@ -1,6 +1,5 @@
 sub init()
     m.itemTitle = m.top.findNode("itemTitle")
-    m.watchButton = m.top.findNode("watchButton")
     m.itemDescription = m.top.findNode("itemDescription")
     m.itemTags = m.top.findNode("itemTags")
     m.itemTime = m.top.findNode("itemTime")
@@ -13,8 +12,8 @@ sub init()
 end sub
 
 sub handleItemDetails()
-    m.itemTitle.text = m.top.content.TITLE
-    m.itemDescription.text = m.top.content.DESCRIPTION
+    m.itemTitle.text = m.top.content.title
+    m.itemDescription.text = m.top.content.description
     m.itemTime.text = "Duration : " + FormatDuration(m.top.content.time) + " Hour(s)"
     if m.top.content.tags <> invalid
         tagsCount = m.top.content.tags.Count()
