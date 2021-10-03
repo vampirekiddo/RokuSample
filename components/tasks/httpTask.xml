@@ -5,4 +5,5 @@
         <field id="request" type="assocarray" />
         <field id="response" type="assocarray" />
     </interface>
+    <children></children>
 </component>
