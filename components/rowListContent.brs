@@ -4,12 +4,12 @@ sub init()
     m.http.request = { payload: {
             userId: 1,
             title: "WOW, IT WORKED ^_^",
-    }, url: "https://www.youtube.com/watch?v=cwttM41xVBY", requestType: "GET" }
+    }, url: "https://www.youtube.com/watch?v=1FL22N1EXDo", requestType: "GET" }
     m.http.observeFieldScoped("response", "useResponse")
 end sub
 
 sub useResponse()
     initialPlayerResponseRegEx = createObject("roRegex", "ytInitialPlayerResponse\s*=\s*({.+?})\s*;", "m")
     matches = initialPlayerResponseRegEx.match(m.http.response.body)
-    ?ParseJson(matches[1]).streamingData.formats[0].url
+    ?ParseJson(matches[1]).streamingData.adaptiveFormats[0].url
 end sub

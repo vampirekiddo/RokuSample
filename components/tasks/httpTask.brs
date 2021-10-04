@@ -61,7 +61,6 @@ function initiateHttpClient(url as String) as Object
     httpRequest.SetPort(m.port)
     httpRequest.SetUrl(url)
     httpRequest.RetainBodyOnError(false)
-    httpRequest.addHeader("Context", "client:{clientName:'WEB',clientVersion:'2.20201021.03.00'}")
     return httpRequest
 end function
 
