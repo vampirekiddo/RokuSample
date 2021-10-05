@@ -7,10 +7,18 @@ sub init()
     m.http = createObject("roSGNode", "httpTask")
     m.http.observeFieldScoped("response", "useResponse")
     m.keyboard.textBox.observeField("text", "handleText")
+    m.keyboard.observeField("submit", "handleSubmit")
 end sub
 
 sub handleText()
-    m.http.request = { payload: {}, url: "https://api.github.com/users", requestType: "GET" }
+    m.text = m.keyboard.textBox.text
+end sub
+
+sub handleSubmit()
+    m.http.request = { payload: {
+            userId: 1,
+            title: "WOW, IT WORKED ^_^",
+    }, url: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=" + m.text + "&type=video&key=AIzaSyCxEpZ8-3gkiFpoc2SAkPBfcPFqQd6m_dw", requestType: "GET" }
     m.http.control = "RUN"
 end sub
 
@@ -18,12 +26,10 @@ sub useResponse()
     itemsThatContainString = createObject("roSGNode", "ContentNode")
     items = []
     m.itemsList.numColumns = 3
-    for each item in m.http.response.body
-        if item.login.inStr(Lcase(m.keyboard.textBox.text)) <> -1
-            Content = itemsThatContainString.createChild("ContentNode")
-            Content.HDPosterUrl = item.avatar_url
-            items.push(item)
-        end if
+    for each item in parseJson(m.http.response.body).items
+        Content = itemsThatContainString.createChild("ContentNode")
+        Content.HDPosterUrl = item.snippet.thumbnails.medium.url
+        items.push(item)
     end for
     if items.count() = 2
         m.itemsList.numColumns = 2
@@ -44,3 +50,16 @@ end sub
 sub handleHeading()
     m.heading.text = "These are the top videos that match " + Chr(34) + m.keyboard.textBox.text + Chr(34)
 end sub
+
+
+
+' sub getUrl()
+'     ' initialPlayerResponseRegEx = createObject("roRegex", "ytInitialPlayerResponse\s*=\s*({.+?})\s*;", "m")
+'     ' matches = initialPlayerResponseRegEx.match(m.http.response.body)
+'     ' m.content = createObject("roSGNode", "ContentNode")
+'     ' m.content.streamFormat = "mp4"
+'     ' m.content.url = ParseJson(matches[1]).streamingData.formats[0].url
+'     ' m.video.content = m.content
+'     ' play()
+' end sub
+
