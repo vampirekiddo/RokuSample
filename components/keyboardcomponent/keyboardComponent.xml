@@ -2,6 +2,7 @@
 <component name="keyboardComponent" extends="Group">
     <interface>
         <field id="textBox" type="node" />
+        <field id="submit" type="boolean" />
     </interface>
     <script type="text/brightscript" uri="pkg:/components/keyboardcomponent/keyboardComponent.brs" />
     <children>
@@ -17,8 +18,9 @@
             <ButtonGroup translation="[608,0]" minWidth="74" maxWidth="74" horizAlignment="center" vertAlignment="Bottom" layoutDirection="vert" id="Col8" />
             <ButtonGroup translation="[682,0]" minWidth="74" maxWidth="74" horizAlignment="center" vertAlignment="Bottom" layoutDirection="vert" id="Col9" />
             <Button translation="[120,0]" iconUri="" height="80" focusedIconUri="" minWidth="100" text="%!?,." maxWidth="100" id="SYMBOLS" />
-            <Button translation="[348,0]" iconUri="" height="80" focusedIconUri="" minWidth="120" text="SPACE" maxWidth="150" id="SPACEBAR" />
-            <Button translation="[570,0]" iconUri="pkg:/components/keyboardcomponent/icons/backspacewhite.png" height="80" focusedIconUri="pkg:/components/keyboardcomponent/icons/backspaceblack.png" minWidth="90" text="" maxWidth="90" id="DELETE" />
+            <Button translation="[230,0]" iconUri="" height="80" focusedIconUri="" minWidth="120" text="SPACE" maxWidth="150" id="SPACEBAR" />
+            <Button translation="[390,0]" iconUri="pkg:/components/keyboardcomponent/icons/backspacewhite.png" height="80" focusedIconUri="pkg:/components/keyboardcomponent/icons/backspaceblack.png" minWidth="90" text="" maxWidth="90" id="DELETE" />
+            <Button translation="[480,0]" iconUri="" height="80" focusedIconUri="" minWidth="120" text="SEARCH" maxWidth="170" id="SEARCH" />
         </Group>
     </children>
 </component>

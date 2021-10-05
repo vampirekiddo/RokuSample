@@ -18,7 +18,7 @@ sub handleSubmit()
     m.http.request = { payload: {
             userId: 1,
             title: "WOW, IT WORKED ^_^",
-    }, url: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=" + m.text + "&type=video&key=AIzaSyCxEpZ8-3gkiFpoc2SAkPBfcPFqQd6m_dw", requestType: "GET" }
+    }, url: "https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=" + m.text + "&maxResults=25&type=video&key=AIzaSyCxEpZ8-3gkiFpoc2SAkPBfcPFqQd6m_dw", requestType: "GET" }
     m.http.control = "RUN"
 end sub
 
@@ -26,7 +26,7 @@ sub useResponse()
     itemsThatContainString = createObject("roSGNode", "ContentNode")
     items = []
     m.itemsList.numColumns = 3
-    for each item in parseJson(m.http.response.body).items
+    for each item in m.http.response.body.items
         Content = itemsThatContainString.createChild("ContentNode")
         Content.HDPosterUrl = item.snippet.thumbnails.medium.url
         items.push(item)

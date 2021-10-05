@@ -22,6 +22,7 @@ sub initButtons()
     m.SYMBOLS = m.keyboardController.findNode("SYMBOLS")
     m.SPACEBAR = m.keyboardController.findNode("SPACEBAR")
     m.DELETE = m.keyboardController.findNode("DELETE")
+    m.SEARCH = m.keyboardController.findNode("SEARCH")
     m.textBox = m.top.findNode("textBox")
     it = -1
     for each child in m.keyboardController.getChildren(9, 0)
@@ -87,6 +88,7 @@ sub initObservers()
     m.DELETE.observeField("buttonSelected", "handleExternalButtonSelect")
     m.SPACEBAR.observeField("buttonSelected", "handleExternalButtonSelect")
     m.SYMBOLS.observeField("buttonSelected", "handleExternalButtonSelect")
+    m.SEARCH.observeField("buttonSelected", "handleExternalButtonSelect")
     m.top.textBox = m.textBox
 end sub
 
@@ -95,6 +97,10 @@ sub handleExternalButtonSelect(event)
         m.textBox.text += " "
     else if event.getRoSGNode().id = "DELETE"
         m.textBox.text = m.textBox.text.Left(m.textBox.text.Len() - 1)
+    else if event.getRoSGNode().id = "DELETE"
+        m.top.submit = not m.top.submit
+    else if event.getRoSGNode().id = "SEARCH"
+        m.top.submit = not m.top.submit
     else
         handleSymbols()
     end if
@@ -108,7 +114,9 @@ end sub
 function onKeyEvent(key as String, press as Boolean) as Boolean
     m.rowIdx = m.keyboardController.getChild(m.focusIdx).buttonFocused
     if press
-        if key = "right" and m.focusIdx < 8 and not m.DELETE.hasFocus() and not m.SYMBOLS.hasFocus() and not m.SPACEBAR.hasFocus()
+        if key = "right" and m.SEARCH.hasFocus()
+            return true
+        else if key = "right" and m.focusIdx < 8 and not m.DELETE.hasFocus() and not m.SYMBOLS.hasFocus() and not m.SPACEBAR.hasFocus()
             m.focusIdx++
             m.keyboardController.getChild(m.focusIdx).focusButton = m.rowIdx
             return true
@@ -122,6 +130,8 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         else if key = "down" and m.focusIdx < 2
             m.SYMBOLS.setFocus(true)
             return true
+        else if key = "down" and m.focusIdx = 8
+            m.SEARCH.setFocus(true)
         else if key = "down" and m.focusIdx > 5
             m.DELETE.setFocus(true)
             return true
@@ -155,6 +165,14 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         else if key = "left" and m.SPACEBAR.hasFocus()
             m.focusIdx = 0
             m.SYMBOLS.setFocus(true)
+            return true
+        else if key = "left" and m.SEARCH.hasFocus()
+            m.focusIdx = 0
+            m.DELETE.setFocus(true)
+            return true
+        else if key = "right" and m.DELETE.hasFocus()
+            m.focusIdx = 0
+            m.SEARCH.setFocus(true)
             return true
         end if
     end if

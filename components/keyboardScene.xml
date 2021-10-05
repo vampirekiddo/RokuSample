@@ -4,8 +4,8 @@
     <children>
         <Group id="mainSearch">
             <keyboardComponent id="myKeyboard" />
-            <Label id="heading" translation="[ 670, 145 ]" />
-            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 670, 180 ]" numRows="3" numColumns="3" />
+            <Label id="heading" translation="[ 700, 145 ]" />
+            <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 730, 180 ]" numRows="3" numColumns="3" />
         </Group>
     </children>
 </component>
