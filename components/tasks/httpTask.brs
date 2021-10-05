@@ -41,7 +41,7 @@ end function
 
 function handleResponse(responseString as string, message as object, isOk as boolean) as object
     if isOk
-        body = parseJson(responseString)
+        body = responseString
     else
         body = "An Error has Occurred!!"
     end if

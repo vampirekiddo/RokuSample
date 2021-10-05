@@ -6,6 +6,7 @@
             <keyboardComponent id="myKeyboard" />
             <Label id="heading" translation="[ 700, 145 ]" />
             <PosterGrid id="searchList" basePosterSize="[125,125]" itemSpacing="[16,16]" translation="[ 730, 180 ]" numRows="3" numColumns="3" />
+            <Video id="video" visible="false" />
         </Group>
     </children>
 </component>
