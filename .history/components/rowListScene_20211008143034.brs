@@ -3,21 +3,19 @@ sub init()
     m.flag = true
     m.global.ratio = 1
     m.rowList = m.top.findNode("mainRowList")
-    m.heroDetailsId = m.top.findNode("heroDetailsId")
-    m.MainBoldLabel = m.heroDetailsId.findNode("MainBoldLabel")
-    m.DateAndDurationLabel = m.heroDetailsId.findNode("DateAndDurationLabel")
-    m.DescriptionLabel = m.heroDetailsId.findNode("DescriptionLabel")
-    m.CategoryLabel = m.heroDetailsId.findNode("CategoryLabel")
+    m.MainBoldLabel = m.top.findNode("MainBoldLabel")
+    m.DateAndDurationLabel = m.top.findNode("DateAndDurationLabel")
+    m.DescriptionLabel = m.top.findNode("DescriptionLabel")
+    m.CategoryLabel = m.top.findNode("CategoryLabel")
     m.fadeInAnimation = m.top.findNode("fadeInAnimation")
+    m.heroDetailsId = m.top.findNode("heroDetailsId")
     m.fadeOutAnimation = m.top.findNode("fadeOutAnimation")
     m.rowList.content = createObject("roSGNode", "RowListContent")
     m.rowList.setFocus(true)
+    m.rowList.findNode("RowListItem")
     m.top.observeField("HeroDetails", "handleHeroDetails")
     m.rowList.observeField("rowItemSelected", "handleItemSelected")
     m.fadeOutAnimation.observeField("state", "handleAnimationDone")
-
-
-    ' Handling Responsivness
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
         m.global.ratio = 0.66
@@ -33,7 +31,6 @@ sub init()
     end if
 end sub
 
-' changing the details on the background OR animate focus
 sub handleHeroDetails()
     if m.flag
         m.flag = false
@@ -43,7 +40,6 @@ sub handleHeroDetails()
     end if
 end sub
 
-' animate the changing of the background's data on item focus change
 sub handleAnimationDone()
     if m.fadeOutAnimation.state = "stopped"
         handleUpdate()
@@ -51,12 +47,10 @@ sub handleAnimationDone()
     end if
 end sub
 
-' Start animating the changing of the background data on scroll
 sub handleItemFocusChange()
     m.fadeOutAnimation.control = "start"
 end sub
 
-' Update the text of the data in the details page
 sub handleUpdate()
     m.MainBoldLabel.text = m.top.HeroDetails.MainBoldLabel
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
@@ -64,7 +58,6 @@ sub handleUpdate()
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
 end sub
 
-' Clicking a Row List item
 sub handleItemSelected()
     m.createScreen = createObject("roSGNOde", "ItemDetailsScreen")
     itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
@@ -74,7 +67,6 @@ sub handleItemSelected()
     toggleDetails()
 end sub
 
-' Toggle if the details screen is visible or not
 sub toggleDetails()
     m.rowList.visible = not m.rowList.visible
     m.heroDetailsId.visible = not m.heroDetailsId.visible
@@ -86,7 +78,6 @@ sub toggleDetails()
     end if
 end sub
 
-' Handling navigating and exiting the Details Screen
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press then
         if key = "back" and m.createScreen.visible

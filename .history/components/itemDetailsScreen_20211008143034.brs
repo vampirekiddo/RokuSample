@@ -16,10 +16,13 @@ sub handleItemDetails()
     m.itemDescription.text = m.top.content.description
     m.itemTime.text = "Duration : " + FormatDuration(m.top.content.time) + " Hour(s)"
     if m.top.content.tags <> invalid
-        seperator = ""
-        for each tag in m.top.content.tags
-            m.itemTags.text += seperator + tag
-            seperator = " - "
+        tagsCount = m.top.content.tags.Count()
+        for i = 0 to tagsCount - 1
+            if i = tagsCount - 1
+                m.itemTags.text += m.top.content.tags[i]
+            else
+                m.itemTags.text += m.top.content.tags[i] + " - "
+            end if
         end for
     else
         m.itemTags.text = "No tags available"

@@ -33,7 +33,6 @@ sub init()
     end if
 end sub
 
-' changing the details on the background OR animate focus
 sub handleHeroDetails()
     if m.flag
         m.flag = false
@@ -43,7 +42,6 @@ sub handleHeroDetails()
     end if
 end sub
 
-' animate the changing of the background's data on item focus change
 sub handleAnimationDone()
     if m.fadeOutAnimation.state = "stopped"
         handleUpdate()
@@ -51,7 +49,6 @@ sub handleAnimationDone()
     end if
 end sub
 
-' Start animating the changing of the background data on scroll
 sub handleItemFocusChange()
     m.fadeOutAnimation.control = "start"
 end sub

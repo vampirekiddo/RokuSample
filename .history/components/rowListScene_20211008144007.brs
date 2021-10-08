@@ -33,7 +33,6 @@ sub init()
     end if
 end sub
 
-' changing the details on the background OR animate focus
 sub handleHeroDetails()
     if m.flag
         m.flag = false
@@ -43,7 +42,6 @@ sub handleHeroDetails()
     end if
 end sub
 
-' animate the changing of the background's data on item focus change
 sub handleAnimationDone()
     if m.fadeOutAnimation.state = "stopped"
         handleUpdate()
@@ -51,12 +49,10 @@ sub handleAnimationDone()
     end if
 end sub
 
-' Start animating the changing of the background data on scroll
 sub handleItemFocusChange()
     m.fadeOutAnimation.control = "start"
 end sub
 
-' Update the text of the data in the details page
 sub handleUpdate()
     m.MainBoldLabel.text = m.top.HeroDetails.MainBoldLabel
     m.DateAndDurationLabel.text = m.top.HeroDetails.DateAndDurationLabel
@@ -64,7 +60,6 @@ sub handleUpdate()
     m.CategoryLabel.text = m.top.HeroDetails.CategoryLabel
 end sub
 
-' Clicking a Row List item
 sub handleItemSelected()
     m.createScreen = createObject("roSGNOde", "ItemDetailsScreen")
     itemDetailsNode = m.rowList.content.getChild(m.rowList.rowItemSelected[0]).getChild(m.rowList.rowItemSelected[1])
@@ -74,7 +69,6 @@ sub handleItemSelected()
     toggleDetails()
 end sub
 
-' Toggle if the details screen is visible or not
 sub toggleDetails()
     m.rowList.visible = not m.rowList.visible
     m.heroDetailsId.visible = not m.heroDetailsId.visible
@@ -86,7 +80,6 @@ sub toggleDetails()
     end if
 end sub
 
-' Handling navigating and exiting the Details Screen
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press then
         if key = "back" and m.createScreen.visible
