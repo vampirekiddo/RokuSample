@@ -114,9 +114,7 @@ end sub
 function onKeyEvent(key as String, press as Boolean) as Boolean
     m.rowIdx = m.keyboardController.getChild(m.focusIdx).buttonFocused
     if press
-        if key = "right" and m.SEARCH.hasFocus()
-            return true
-        else if key = "right" and m.focusIdx < 8 and not m.DELETE.hasFocus() and not m.SYMBOLS.hasFocus() and not m.SPACEBAR.hasFocus()
+        if key = "right" and m.focusIdx < 8 and not m.DELETE.hasFocus() and not m.SYMBOLS.hasFocus() and not m.SPACEBAR.hasFocus()
             m.focusIdx++
             m.keyboardController.getChild(m.focusIdx).focusButton = m.rowIdx
             return true
