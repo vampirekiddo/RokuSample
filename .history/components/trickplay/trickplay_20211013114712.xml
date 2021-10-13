@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="TrickPlay" extends="Group">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children>
+        <LayoutGroup horizAlignment="center" vertAlignment="top" translation="[500,500]">
+            <Label height="100" id="currentTime" />
+            <Poster height="8" width="700" />
+            <Poster height="8" width="700" />
+            <Label height="100" id="totalTime" />
+        </LayoutGroup>
+        <LayoutGroup horizAlignment="center" vertAlignment="bottom">
+            <Button id="Back 15" iconUri="https://img.icons8.com/ios/50/000000/circled-left-2.png" focusedIconUri="https://img.icons8.com/ios-filled/50/000000/circled-left-2.png" minWidth="110" maxWidth="140" />
+            <Button id="Play/Pause" iconUri="https://img.icons8.com/ios-glyphs/30/000000/play--v1.png" focusedIconUri="https://img.icons8.com/ios/50/000000/play--v1.png" minWidth="110" maxWidth="140" />
+            <Button id="Skip 15" iconUri="https://img.icons8.com/ios/50/000000/circled-right-2.png" focusedIconUri="https://img.icons8.com/ios-filled/50/000000/circled-right-2.png" minWidth="110" maxWidth="140" />
+            <Button id="CC" iconUri="https://img.icons8.com/ios/50/000000/quote--v1.png" focusedIconUri="https://img.icons8.com/ios-filled/50/000000/quote.png" minWidth="110" maxWidth="140" />
+        </LayoutGroup>
+    </children>
+</component>

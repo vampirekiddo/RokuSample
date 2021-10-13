@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="RowListScene" extends="Scene" initialFocus="mainRowList" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+  <script type="text/brightscript" uri="RowListScene.brs" />
+  <children>
+    <Group id="mainParent">
+      <!-- <ComponentLibrary id="SampleComponentLib" uri="https://devtools.web.roku.com/SampleComponentLib.zip" /> -->
+      <SimpleLabel id="simplyALabel" text="I am a simple Label" translation="[200,200]" />
+      <Rectangle id="everydayRectangle" color="0xFF00FFFF" width="128" height="120" translation="[250,200]" />
+      <infoPane id="myInfoPane" infoText="this is super informative" width="100" height="100" />
+      <ScrollingLabel text="Rock and Scroll" height="100" width="300" />
+    </Group>
+  </children>
+</component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="rowListScene" extends="Scene" initialFocus="mainRowList">
+  <script type="text/brightscript" uri="rowListScene.brs" />
+  <children>
+    <Timer id="timer" />
+    <Label id="timeLabel" />
+    >
+    <ButtonGroup>
+      <Button text="start" id="start" />
+      <Button text="stop" id="stop" />
+      <Button text="reset" id="reset" />
+    </ButtonGroup>
+  </children>
+</component>

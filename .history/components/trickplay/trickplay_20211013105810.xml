@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="trickPlay" extends="Parent">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children></children>
+</component>

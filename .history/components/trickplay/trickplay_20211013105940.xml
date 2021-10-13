@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="trickPlay" extends="Parent">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children>
+        <Label height="100" id="currentTime" />
+        <Poster height="8" width="700" color="0x333333FF" />
+        <Label height="100" id="totalTime" />
+    </children>
+</component>

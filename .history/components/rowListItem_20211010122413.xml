@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="RowListItem" extends="Group">
+  <interface>
+    <field id="itemContent" type="node" onChange="showContent" />
+    <field id="focusPercent" type="float" onChange="handleFocus" />
+    <field id="rowFocusPercent" type="float" onChange="handleRowFocus" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/rowListItem.brs" />
+  <children>
+    <Poster scaleRotateCenter="[ 160.0, 90.0 ]" id="itemPoster" width="320" height="180" translation="[0,20]">
+      <Rectangle id="itemMask" width="320" height="180" scaleRotateCenter="[ 256.0, 144.0 ]" color="0x101010FF" opacity="0.75" />
+      <Label id="itemTitle" translation="[ 0, 12 ]" scaleRotateCenter="[ 160.0, 90.0 ]" horizAlign="center" width="320" maxLines="1" opacity="0.75" />
+      <Label id="itemDescription" scaleRotateCenter="[ 160.0, 90.0 ]" translation="[ 0, 120 ]" wrap="true" width="320" maxLines="2" opacity="0.75" />
+    </Poster>
+  </children>
+</component>

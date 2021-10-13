@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="RowListScene" extends="Scene" initialFocus="mainRowList">
+  <script type="text/brightscript" uri="RowListScene.brs" />
+  <children>
+    <Group id="mainParent">
+      <Dialog title="Hello, Good Morning" />
+      <SimpleLabel id="simplyALabel" text="I am a simple Label" translation="[200,200]" />
+      <Rectangle id="everydayRectangle" color="0xFF00FFFF" width="128" height="120" translation="[250,0]" />
+      <ScrollingLabel text="Rock and Scroll, Scroll and Rock, Boom Shakalaka" height="100" />
+      <LabelList id="moviemenu" translation="[160,492]" itemSize="[440,48]">
+
+        <ContentNode id="moviemenucontent" role="content">
+          <ContentNode title="Drama" />
+          <ContentNode title="Action" />
+          <ContentNode title="Horror" />
+          <ContentNode title="Comedy" />
+        </ContentNode>
+
+      </LabelList>
+    </Group>
+  </children>
+</component>
