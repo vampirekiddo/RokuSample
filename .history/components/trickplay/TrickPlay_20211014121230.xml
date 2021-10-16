@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="TrickPlay" extends="Group">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children>
+        <Poster id="ScrubberContainer" translation="[400,507]" width="100" height="10" uri="pkg:/images/white.jpg" blendColor="0x333333FF" />
+        <LayoutGroup translation="[400,507]" itemSpacings="[10]" id="mainParent" layoutDirection="horiz" vertAlignment="center" horizAlignment="center">
+            <Label id="elapsedTime" text="00:00" />
+            <Poster id="ScrubberFilled" translation="[400,0]" width="200" height="10" uri="pkg:/images/white.jpg" />
+            <Label id="remainingTime" text="00:00" />
+        </LayoutGroup>
+        <LayoutGroup id="bottomButtons" itemSpacings="[20]" translation="[100,607]" layoutDirection="horiz" vertAlignment="center" horizAlignment="center">
+            <Button id="back15" text="back" />
+            <Button id="playPause" text="Play" />
+            <Button id="forward15" text="forward15" />
+        </LayoutGroup>
+    </children>
+</component>

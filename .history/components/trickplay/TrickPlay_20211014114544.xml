@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="TrickPlay" extends="Group">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children>
+        <LayoutGroup id="mainParent">
+            <Label id="elapsedTime" text="00:00" />
+            <Label id="remainingTime" text="00:00" />
+        </LayoutGroup>
+    </children>
+</component>

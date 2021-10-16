@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="TrickPlay" extends="Group">
+    <script type="text/brightscript" uri="TrickPlay.brs" />
+    <children>
+        <LayoutGroup translation="[640,507]" itemSpacings="[50,50,50]" id="mainParent" layoutDirection="horiz" vertAlignment="center" horizAlignment="center">
+            <Label id="elapsedTime" text="00:00" />
+            <Group>
+                <Poster id="ScrubberContainer" translation="[400,0]" width="700" height="10" uri="pkg:/images/white.jpg" blendColor="0x333333FF" />
+                <Poster id="ScrubberFilled" translation="[400,0]" width="700" height="10" uri="pkg:/images/white.jpg" />
+            </Group>
+            <Label id="remainingTime" text="00:00" />
+        </LayoutGroup>
+        <LayoutGroup id="bottomButtons" itemSpacings="[10,10,200]" translation="[640,607]" layoutDirection="horiz" vertAlignment="center" horizAlignment="center">
+            <Button id="back15" text=" " iconURI="pkg:/images/whiteback.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackback.png" minWidth="128" maxWidth="128" />
+            <Button id="playPause" text=" " iconURI="pkg:/images/whitepause.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackpause.png" minWidth="128" maxWidth="128" />
+            <Button id="forward15" text=" " iconURI="pkg:/images/whiteright.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackright.png" minWidth="128" maxWidth="128" />
+            <Button id="CC" text=" " iconURI="pkg:/images/whitequote.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackquote.png" minWidth="128" maxWidth="128" />
+        </LayoutGroup>
+    </children>
+</component>
