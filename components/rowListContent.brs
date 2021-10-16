@@ -1,11 +1,15 @@
 sub init()
-    m.global.http.request = { payload: {
+    m.http = createObject("roSGNode", "httpTask")
+    m.http.control = "RUN"
+    m.http.request = { payload: {
             userId: 1,
             title: "WOW, IT WORKED ^_^",
-    }, url: "https://jsonplaceholder.typicode.com/albums", requestType: "GET"}
-    m.global.http.observeFieldScoped("response", "useResponse")
+    }, url: "https://www.youtube.com/watch?v=1FL22N1EXDo", requestType: "GET" }
+    m.http.observeFieldScoped("response", "useResponse")
 end sub
 
 sub useResponse()
-    ?m.global.http.response
+    initialPlayerResponseRegEx = createObject("roRegex", "ytInitialPlayerResponse\s*=\s*({.+?})\s*;", "m")
+    matches = initialPlayerResponseRegEx.match(m.http.response.body)
+    ?ParseJson(matches[1]).streamingData.adaptiveFormats[0].url
 end sub

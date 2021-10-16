@@ -14,15 +14,15 @@ function handleCalls() as Object
                 response = fire(msg.getData())
             end if
         else if msgType = "roUrlEvent"
-                if msg.getInt() = 1
-                    if msg.getResponseCode() > 0
-                        response = handleResponse(msg.getString(),msg,true)
-                    else
-                        response = handleResponse(msg.getFailureReason(),msg,false)
-                    end if
+            if msg.getInt() = 1
+                if msg.getResponseCode() > 0
+                    response = handleResponse(msg.getString(), msg, true)
+                else
+                    response = handleResponse(msg.getFailureReason(), msg, false)
                 end if
-                m.top.response = response
-                return response
+            end if
+            m.top.response = response
+            return response
         end if
     end while
 end function
@@ -31,7 +31,7 @@ function fire(request as Object) as Object
     httpRequest = initiateHttpClient(request.url)
     requestId = httpRequest.getIdentity().ToStr()
     m.urlRequest[requestId] = {
-        request:httpRequest
+        request: httpRequest
     }
     if checkRequestType(request.requestType)
         httpRequest.AsyncPostFromString(formatJson(request.payload))
@@ -42,15 +42,15 @@ end function
 
 function handleResponse(responseString as String, message as Object, isOk as Boolean) as Object
     if isOk
-        body = parseJson(responseString)
+        body = responseString
     else
         body = "An Error has Occurred!!"
     end if
-        requestId = message.GetSourceIdentity().ToStr()
-        m.urlRequest[requestId] = invalid
+    requestId = message.GetSourceIdentity().ToStr()
+    m.urlRequest[requestId] = invalid
     return {
         requestId: requestId
-        body:body
+        body: body
     }
 end function
 
@@ -60,9 +60,7 @@ function initiateHttpClient(url as String) as Object
     httpRequest.InitClientCertificates()
     httpRequest.SetPort(m.port)
     httpRequest.SetUrl(url)
-    httpRequest.RetainBodyOnError(true)
-    httpRequest.addHeader("Content-Type", "application/json")
-    httpRequest.addHeader("Accept", "application/json")
+    httpRequest.RetainBodyOnError(false)
     return httpRequest
 end function
 
