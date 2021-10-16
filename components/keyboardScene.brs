@@ -62,7 +62,7 @@ sub handleItemSelected()
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    if press
+    if press and m.keyboard.visible = true
         if key = "right" and not m.itemsList.hasFocus()
             m.itemsList.setFocus(true)
             return true
@@ -93,35 +93,58 @@ sub handleVideoPlaybackResponse()
     videoContent.streamformat = "mp4"
     m.video.content = videoContent
     m.video.visible = true
+    m.video.enableUI = false
+    m.video.enableTrickPlay = false
+    m.video.createChild("TrickPlay")
+    m.keyboard.visible = false
     m.video.seekMode = "accurate"
-    m.video.trickPlayBar.textColor = "0xFFFFFFFF"
-    m.video.trickPlayBar.filledBarImageUri = "pkg:/images/white.jpg"
-    m.video.trickPlayBar.trackImageUri = "pkg:/images/white.jpg"
-    m.video.trickPlayBar.trackBlendColor = "0x333333FF"
-    m.video.trickPlayBar.thumbBlendColor = "0x00000000"
-    ' Hides the black background in the scrubber
-    m.video.trickPlayBar.getParent().getChild(1).opacity = 0
-    ' Update percentage on loading bar
-    m.video.bufferingBar.observeField("percentage", "updatePercentage")
-    m.video.trickPlayBar.getParent().getChild(2).opacity = 0
-    m.video.trickPlayBar.getParent().getChild(3).opacity = 0
-    m.video.trickPlayBar.getParent().getChild(4).opacity = 0
-    m.video.trickPlayBar.getChild(0).height = 8
-    m.video.trickPlayBar.getChild(1).height = 8
-    m.video.trickPlayBar.getChild(2).opacity = 0
-    m.video.trickPlayBar.getChild(3).opacity = 0
-    m.video.trickPlayBar.getChild(4).opacity = 0
-    m.video.trickPlayBar.getChild(5).opacity = 0
-    m.video.bufferingBar.emptyBarBlendColor = "0x333333FF"
-    m.video.bufferingBar.trackImageUri = "pkg:/images/white.jpg"
-    m.video.bufferingBar.trackBlendColor = "0x333333FF"
-    m.video.bufferingBar.filledBarImageUri = "pkg:/images/white.jpg"
     m.video.setFocus(true)
     m.video.control = "play"
+    m.video.getChild(2).setFocus(true)
+    m.video.getChild(2).observeField("play", "handlePlay")
+    m.video.getChild(2).observeField("forward", "handleForward")
+    m.video.getChild(2).observeField("back", "handleBack")
+    m.video.getChild(2).observeField("cc", "handleCC")
+    m.video.observeField("state", "videoStarted")
+    m.video.observeField("position", "updatePosition")
+    m.video.observeField("bufferingStatus", "updateBuffering")
 end sub
 
-sub updatePercentage()
-    m.video.bufferingBar.height = 8
-    ?m.video.position
-    m.video.trickPlayBar.getParent().getChild(8).text = m.video.bufferingBar.percentage.toStr() + "%"
+sub updateBuffering()
+    if m.video.bufferingStatus <> invalid
+        m.video.getChild(2).loadingData = { percentage: m.video.bufferingStatus.percentage, done: m.video.bufferingStatus.prebufferDone }
+    end if
+end sub
+
+sub updatePosition()
+    m.video.getChild(2).position = m.video.position
+end sub
+
+sub videoStarted()
+    m.video.getChild(2).duration = m.video.duration
+end sub
+
+sub handlePlay()
+    if m.video.control = "play" or m.video.control = "resume"
+        m.video.control = "pause"
+    else
+        m.video.control = "resume"
+    end if
+    if m.video.state = "finished"
+        m.video.control = "play"
+    end if
+end sub
+
+sub handleForward()
+    m.video.seek = m.video.position + 15
+    m.video.control = "resume"
+end sub
+
+sub handleBack()
+    m.video.seek = m.video.position - 15
+    m.video.control = "resume"
+end sub
+
+sub handleCC()
+
 end sub
