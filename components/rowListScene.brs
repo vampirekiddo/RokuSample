@@ -28,32 +28,36 @@ sub init()
 end sub
 
 sub animateScroll(direction as String)
-    if direction = "down" and m.rowFocused < 4 and m.scrollAnimation.state = "stopped"
-        m.rowFocused++
-        m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
-        m.parent.getChild(m.rowFocused).setFocus(true)
-        m.scrollAnimation.control = "start"
-    else if direction = "up" and m.rowFocused = 1 and m.scrollAnimation.state = "stopped"
-        m.parent.getChild(m.rowFocused - 1).setFocus(true)
-    else if direction = "up" and m.rowFocused > 1 and m.scrollAnimation.state = "stopped"
-        m.rowFocused--
-        m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] + 300]]
-        m.parent.getChild(m.rowFocused).setFocus(true)
-        m.scrollAnimation.control = "start"
-    else if direction = "down" and m.rowFocused = 4 and m.scrollAnimation.state = "stopped"
-        m.parent.getChild(m.rowFocused + 1).setFocus(true)
-        m.rowFocused = 5
-    else if direction = "up" and m.rowFocused = 5 and m.scrollAnimation.state = "stopped"
-        m.parent.getChild(m.rowFocused - 1).setFocus(true)
+    ?m.rowFocused
+    if (direction = "down" and m.rowFocused = 5) or (m.rowFocused = 0 and m.direction = "up")
+        return false
+    else
+
     end if
+    ' if direction = "down" and m.rowFocused < 4 and m.scrollAnimation.state = "stopped"
+    '     m.rowFocused++
+    '     m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
+    '     m.parent.getChild(m.rowFocused).setFocus(true)
+    '     m.scrollAnimation.control = "start"
+    ' else if direction = "up" and m.rowFocused = 1 and m.scrollAnimation.state = "stopped"
+    '     m.parent.getChild(m.rowFocused - 1).setFocus(true)
+    ' else if direction = "up" and m.rowFocused > 1 and m.scrollAnimation.state = "stopped"
+    '     m.rowFocused--
+    '     m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] + 300]]
+    '     m.parent.getChild(m.rowFocused).setFocus(true)
+    '     m.scrollAnimation.control = "start"
+    ' else if direction = "down" and m.rowFocused = 4 and m.scrollAnimation.state = "stopped"
+    '     m.parent.getChild(m.rowFocused + 1).setFocus(true)
+    '     m.rowFocused = 5
+    '     m.scrollAnimation.control = "start"
+    ' else if direction = "up" and m.rowFocused = 5 and m.scrollAnimation.state = "stopped"
+    '     m.parent.getChild(m.rowFocused - 1).setFocus(true)
+    ' end if
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press
         if key = "down"
-            animateScroll(key)
-            return true
-        else if key = "up"
             animateScroll(key)
             return true
         end if
