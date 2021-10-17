@@ -11,6 +11,7 @@ sub init()
         row.content = createObject("roSGNode", "RowListContent")
     end for
     m.rowFocused = 0
+    m.canScroll = true
     m.rows[0].setFocus(true)
     videoMode = createObject("roDeviceInfo")
     if videoMode.GetVideoMode() = "720p"
@@ -27,12 +28,44 @@ sub init()
     end if
 end sub
 
-sub animateScroll(direction as String)
-    ?m.rowFocused
-    if (direction = "down" and m.rowFocused = 5) or (m.rowFocused = 0 and m.direction = "up")
-        return false
-    else
+sub animateUp()
+    m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] + 300]]
+    m.scrollAnimation.control = "start"
+end sub
 
+sub animateDown()
+    m.scrollAnimation.getChild(0).keyValue = [[0, m.parent.translation[1]], [0, m.parent.translation[1] - 300]]
+    m.scrollAnimation.control = "start"
+end sub
+
+sub animateScroll(direction as String)
+    if (direction = "down" and m.rowFocused = 3)
+        m.parent.getChild(m.rowFocused + 1).setFocus(true)
+        m.rowFocused++
+    else if (direction = "up" and m.rowFocused = 4)
+        m.parent.getChild(m.rowFocused - 1).setFocus(true)
+        m.rowFocused--
+    else if (direction = "down" and m.rowFocused > 4) or (m.rowFocused = 0 and direction = "up")
+        return
+    else if direction = "down" and m.scrollAnimation.state = "stopped" and m.rowFocused < 3 and m.canScroll = true
+        m.rowFocused++
+        animateDown()
+        m.parent.getChild(m.rowFocused).setFocus(true)
+    else if direction = "up" and m.rowFocused >= 4 or m.rowFocused <= 1 and m.scrollAnimation.state = "stopped"
+        animateUp()
+        m.parent.getChild(m.rowFocused - 1).setFocus(true)
+        m.rowFocused--
+    else if direction = "up" and m.rowFocused = 4
+        m.parent.getChild(m.rowFocused).setFocus(true)
+    else if direction = "up" and m.scrollAnimation.state = "stopped" and m.rowFocused >= 0
+        m.rowFocused--
+        m.parent.getChild(m.rowFocused).setFocus(true)
+        animateUp()
+    end if
+    if m.rowFocused >= 4
+        m.canScroll = false
+    else
+        m.canScroll = true
     end if
     ' if direction = "down" and m.rowFocused < 4 and m.scrollAnimation.state = "stopped"
     '     m.rowFocused++
@@ -53,11 +86,12 @@ sub animateScroll(direction as String)
     ' else if direction = "up" and m.rowFocused = 5 and m.scrollAnimation.state = "stopped"
     '     m.parent.getChild(m.rowFocused - 1).setFocus(true)
     ' end if
+    ?m.rowFocused
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press
-        if key = "down"
+        if key = "up" or key = "down"
             animateScroll(key)
             return true
         end if
