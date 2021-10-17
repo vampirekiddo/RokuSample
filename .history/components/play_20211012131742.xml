@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component name="play" extends="Scene">
-    <script type="text/brightscript" uri="Play.brs" />
-    <children>
-        <Video id="video" width="900" height="600" />
-    </children>
-</component>

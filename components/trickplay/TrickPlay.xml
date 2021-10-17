@@ -21,7 +21,7 @@
                 <Label id="totalTime" text="00:00" />
             </LayoutGroup>
             <LayoutGroup id="bottomButtons" itemSpacings="[10,10,220]" translation="[800,607]" layoutDirection="horiz" vertAlignment="center" horizAlignment="center">
-                <Button height="96" id="back15" iconURI="pkg:/images/whiteback.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackback.png" minWidth="100" maxWidth="100" />
+                <Button height="96" id="back15" iconURI="pkg:/images/whiteleft.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackleft.png" minWidth="100" maxWidth="100" />
                 <Button height="96" id="playPause" iconURI="pkg:/images/whitepause.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackpause.png" minWidth="100" maxWidth="100" />
                 <Button height="96" id="forward15" iconURI="pkg:/images/whiteright.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackright.png" minWidth="100" maxWidth="100" />
                 <Button height="96" id="CC" iconURI="pkg:/images/whitequote.png" focusBitmapUri="pkg:/images/buttonbg.png" focusedIconUri="pkg:/images/blackquote.png" minWidth="100" maxWidth="100" />
