@@ -89,8 +89,13 @@ sub handleVideoPlaybackResponse()
     videoContent = createObject("RoSGNode", "ContentNode")
     ' YouTube API Limit Exceeded
     ' videoContent.url = parseJson(matches[1]).streamingData.formats[0].url
-    videoContent.url = "http://scienceandfilm.org/uploads/videos/files/afronauts_trailer.mp4"
-    videoContent.streamformat = "mp4"
+    videoContent.url = "https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8"
+    videoContent.streamFormat = "hls"
+    videoContent.drmParams = {
+        name: "Vertimatrix",
+        authDomain: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==",
+        serializationUrl: "https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw=="
+    }
     m.video.content = videoContent
     m.video.visible = true
     m.video.enableUI = false

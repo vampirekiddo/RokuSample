@@ -21,3 +21,5 @@ splash_color=#662D91
 splash_min_time=1000
 
 ui_resolutions = "fhd,hd"
+requires_verimatrix_drm=1
+requires_verimatrix_version=1.0
