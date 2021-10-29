@@ -1,23 +1,45 @@
 sub init()
-    m.global.addField("http", "node", FALSE)
-    m.global.addField("ratio", "float", FALSE)
-    m.global.http = createObject("roSGNode", "httpTask")
-    m.global.http.control = "RUN"
-    m.global.ratio = 1
-    m.rowList = m.top.findNode("mainRowList")
-    m.rowList.content = createObject("roSGNode", "RowListContent")
-    m.rowList.setFocus(true)
-    videoMode = createObject("roDeviceInfo")
-    if videoMode.GetVideoMode() = "720p"
-        m.global.ratio = 0.66
+    initGetNodes()
+    m.btnGroup.setFocus(true)
+    initObservers()
+end sub
+
+sub initGetNodes()
+    m.btnGroup = m.top.findNode("btnGroup")
+    m.start = m.btnGroup.findNode("start")
+    m.stopTimer = m.btnGroup.findNode("stopTimer")
+    ' m.timer = m.top.findNode("timer")
+    m.timeLabel = m.top.findNode("timeLabel")
+end sub
+
+sub initObservers()
+    m.start.observeField("buttonSelected", "start")
+    m.stopTimer.observeField("buttonSelected", "stopTimer")
+    m.timer = createObject("roTimespan")
+    ' m.timer.observeField("fire", "changeText")
+end sub
+
+sub start()
+    m.timeLabel.text = "00:00"
+    m.timer.Mark()
+end sub
+
+sub stopTimer()
+    time = m.timer.TotalSeconds()
+    if time MOD 60 = 0
+        seconds = "00"
+        minutes = Str(time / 60)
+    else
+        minutes = Str(INT(time / 60))
+        seconds = Str(INT(time MOD 60))
     end if
-    if m.global.ratio = 0.66
-        m.rowList.rowHeights = [Cdbl(m.rowList.rowHeights[0] * m.global.ratio) + 10]
-        m.rowList.rowItemSpacing = [[5, 0]]
-        m.rowList.focusXOffset = [Cdbl(m.rowList.focusXOffset[0] * m.global.ratio) - 50]
-        m.rowList.rowItemSize = [[INT(m.rowList.rowItemSize[0][0] * m.global.ratio) + 20, INT(m.rowList.rowItemSize[0][1] * m.global.ratio)]]
-        m.rowList.translation = [INT(m.rowList.translation[0] * m.global.ratio), INT(m.rowList.translation[1] / m.global.ratio) - 100]
-        m.rowList.rowLabelOffset = [[INT(m.rowList.rowLabelOffset[0][0] * m.global.ratio), INT(m.rowList.rowLabelOffset[0][1] * m.global.ratio) - 6]]
-        m.rowList.itemSize = [1400, INT(m.rowList.itemSize[1] * m.global.ratio)]
+    minutes = minutes.trim()
+    seconds = seconds.trim()
+    if Len(minutes) = 1
+        minutes = "0" + minutes
     end if
+    if Len(seconds) = 1
+        seconds = "0" + seconds
+    end if
+    m.timeLabel.text = minutes + ":" + seconds
 end sub
