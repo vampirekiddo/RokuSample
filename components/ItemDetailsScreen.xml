@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="ItemDetailsScreen" extends="Group" initialFocus="ButtonGroup">
-    <script type="text/brightscript" uri="ItemDetailsScreen.brs" />
+    <script type="text/brightscript" uri="itemDetailsScreen.brs" />
     <interface>
         <field id="content" type="node" />
+        <function name="focusWatch" />
+        <function name="focusPlus" />
     </interface>
     <children>
-        <LayoutGroup translation="[640,400]" id="mainContent" layoutDirection="vert" itemSpacings="20" vertAlignment="center" horizAlignment="center">
+        <LayoutGroup id="mainContent" translation="[640,400]" layoutDirection="vert" itemSpacings="20" vertAlignment="center" horizAlignment="center">
             <Label id="itemTitle" />
             <Label id="itemDescription" />
             <Label id="itemTags" />

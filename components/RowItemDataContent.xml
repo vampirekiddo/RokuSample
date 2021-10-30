@@ -2,7 +2,7 @@
 <component name="RowItemDataContent" extends="ContentNode">
     <interface>
         <field id="title" type="string" />
-        <field id="HDPosterURL" type="string" />
+        <field id="hdPosterURL" type="string" />
         <field id="description" type="string" />
         <field id="tags" type="array" />
         <field id="time" type="integer" />

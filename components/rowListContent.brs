@@ -1,9 +1,13 @@
 sub init()
     m.http = createObject("roSGNode", "httpTask")
-    m.http.request = { payload: {
+    m.http.request = {
+        payload: {
             userId: 1,
             title: "WOW, IT WORKED ^_^",
-    }, url: "https://alghool.net/RokuDev/data.json", requestType: "GET" }
+        },
+        url: "https://alghool.net/RokuDev/data.json",
+        requestType: "GET"
+    }
     m.http.control = "RUN"
     m.http.observeFieldScoped("response", "populateRowList")
 end sub
@@ -16,7 +20,7 @@ sub populateRowList()
             itemData = itemNode.createChild("rowItemDataContent")
             itemData.setFields({
                 title: data.title
-                HDPosterURL: data.thumbnail
+                hdPosterURL: data.thumbnail
                 description: data.longDescription
                 tags: data.tags
                 time: data.time
