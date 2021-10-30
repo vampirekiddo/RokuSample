@@ -29,14 +29,14 @@ end function
 
 function fire(request as Object) as Object
     httpRequest = initiateHttpClient(request.url)
-    requestId = httpRequest.getIdentity().ToStr()
+    requestId = httpRequest.getIdentity().toStr()
     m.urlRequest[requestId] = {
         request:httpRequest
     }
     if checkRequestType(request.requestType)
         httpRequest.AsyncPostFromString(formatJson(request.payload))
     else
-        httpRequest.AsyncGetToString()
+        httpRequest.AsyncGettoString()
     end if
 end function
 
@@ -46,7 +46,7 @@ function handleResponse(responseString as String, message as Object, isOk as Boo
     else
         body = "An Error has Occurred!!"
     end if
-        requestId = message.GetSourceIdentity().ToStr()
+        requestId = message.GetSourceIdentity().toStr()
         m.urlRequest[requestId] = invalid
     return {
         requestId: requestId
